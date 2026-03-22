@@ -1,5 +1,18 @@
 spring:
-  application:
-    name: payment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/orders
+    username: postgres
+    password: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  kafka:
+    consumer:
+      group-id: delivery-service-group
+    bootstrap-servers: localhost:9092
 server:
   port: 8082
+
+order-paid-topic: orders.events
+delivery-assigned-topic: delivery.events

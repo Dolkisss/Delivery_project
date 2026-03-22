@@ -12,6 +12,11 @@
           <package value="dev.dolkisss.paymentservice" />
         </packages>
       </persistence-unit>
+      <persistence-unit moduleName="order-platform.delivery-service.main" name="Default">
+        <packages>
+          <package value="dev.dolkisss.deliveryservice" />
+        </packages>
+      </persistence-unit>
     </persistence-units>
   </component>
 </project>

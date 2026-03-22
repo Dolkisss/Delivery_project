@@ -3,17 +3,21 @@ spring:
     url: jdbc:postgresql://localhost:5433/orders
     username: postgres
     password: postgres
-
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-
+  kafka:
+    consumer:
+      group-id: order-service-group
+    bootstrap-servers: localhost:9092
   application:
     name: payment-service
-
 server:
   port: 8080
 
 payment-service:
   base-url: http://localhost:8081
+
+order-paid-topic: orders.events
+delivery-assigned-topic: delivery.events
