@@ -1,6 +1,5 @@
 package dev.dolkisss.orderservice.api;
 
-import dev.dolkisss.api.http.order.CreateOrderRequestDto;
 import dev.dolkisss.api.http.order.OrderDto;
 import dev.dolkisss.orderservice.domain.db.OrderEntityMapper;
 import dev.dolkisss.orderservice.domain.OrderService;
@@ -19,13 +18,14 @@ public class OrderController {
 
     private final OrderEntityMapper orderEntityMapper;
 
-    @PostMapping
-    public OrderDto create(
-            @RequestBody CreateOrderRequestDto request
+    @PostMapping("/{id}/pay")
+    public OrderDto payOrder(
+            @PathVariable Long id,
+            @RequestBody OrderPaymentRequest request
     ) {
-        log.info("Creating order: request={}", request);
-        var saved = orderService.create(request);
-        return orderEntityMapper.toOrderDto(saved);
+        log.info("Paying order with id={}, request={}", id, request);
+        var entity = orderService.processPayment(id, request);
+        return orderEntityMapper.toOrderDto(entity);
     }
 
     @GetMapping("/{id}")
