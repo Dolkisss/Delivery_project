@@ -1,4 +1,4 @@
-package dev.dolkisss.orderservice.domain;
+package dev.dolkisss.api.http.order;
 
 public enum OrderStatus {
     PENDING_PAYMENT,

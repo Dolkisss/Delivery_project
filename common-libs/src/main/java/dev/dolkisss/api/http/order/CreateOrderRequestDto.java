@@ -1,4 +1,4 @@
-package dev.dolkisss.orderservice.api;
+package dev.dolkisss.api.http.order;
 
 import java.util.Set;
 

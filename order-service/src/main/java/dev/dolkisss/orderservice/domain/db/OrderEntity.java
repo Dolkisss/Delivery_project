@@ -1,5 +1,6 @@
-package dev.dolkisss.orderservice.domain;
+package dev.dolkisss.orderservice.domain.db;
 
+import dev.dolkisss.api.http.order.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

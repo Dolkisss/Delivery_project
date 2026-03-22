@@ -7,6 +7,11 @@
           <package value="dev.dolkisss.orderservice" />
         </packages>
       </persistence-unit>
+      <persistence-unit moduleName="order-platform.payment-service.main" name="Default">
+        <packages>
+          <package value="dev.dolkisss.paymentservice" />
+        </packages>
+      </persistence-unit>
     </persistence-units>
   </component>
 </project>

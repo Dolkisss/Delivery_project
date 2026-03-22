@@ -1,6 +1,11 @@
 package dev.dolkisss.orderservice.domain;
 
-import dev.dolkisss.orderservice.api.CreateOrderRequestDto;
+import dev.dolkisss.api.http.order.CreateOrderRequestDto;
+import dev.dolkisss.api.http.order.OrderStatus;
+import dev.dolkisss.orderservice.domain.db.OrderEntity;
+import dev.dolkisss.orderservice.domain.db.OrderEntityMapper;
+import dev.dolkisss.orderservice.domain.db.OrderItemEntity;
+import dev.dolkisss.orderservice.domain.db.OrderJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -44,4 +49,5 @@ public class OrderService {
         return orderItemEntityOptional.orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity with id `%s` not found".formatted(id)));
     }
+
 }

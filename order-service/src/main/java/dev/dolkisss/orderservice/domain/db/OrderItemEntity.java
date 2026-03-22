@@ -1,4 +1,4 @@
-package dev.dolkisss.orderservice.domain;
+package dev.dolkisss.orderservice.domain.db;
 
 import jakarta.persistence.*;
 import lombok.Getter;

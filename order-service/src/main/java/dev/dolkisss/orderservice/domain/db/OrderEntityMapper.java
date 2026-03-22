@@ -1,7 +1,7 @@
-package dev.dolkisss.orderservice.domain;
+package dev.dolkisss.orderservice.domain.db;
 
-import dev.dolkisss.orderservice.api.CreateOrderRequestDto;
-import dev.dolkisss.orderservice.api.OrderDto;
+import dev.dolkisss.api.http.order.CreateOrderRequestDto;
+import dev.dolkisss.api.http.order.OrderDto;
 import org.mapstruct.*;
 
 @Mapper(

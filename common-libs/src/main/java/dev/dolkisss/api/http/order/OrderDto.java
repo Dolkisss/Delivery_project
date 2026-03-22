@@ -1,14 +1,9 @@
-package dev.dolkisss.orderservice.api;
+package dev.dolkisss.api.http.order;
 
-import dev.dolkisss.orderservice.domain.OrderEntity;
-import dev.dolkisss.orderservice.domain.OrderStatus;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
-/**
- * DTO for {@link OrderEntity}
- */
 public record OrderDto(
         Long id,
         Long customerId,

@@ -1,6 +1,8 @@
 package dev.dolkisss.orderservice.api;
 
-import dev.dolkisss.orderservice.domain.OrderEntityMapper;
+import dev.dolkisss.api.http.order.CreateOrderRequestDto;
+import dev.dolkisss.api.http.order.OrderDto;
+import dev.dolkisss.orderservice.domain.db.OrderEntityMapper;
 import dev.dolkisss.orderservice.domain.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
