@@ -1,24 +1,18 @@
 # 🚚 Spring Delivery Platform
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
-![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-Event--Driven-black)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
+**Spring Delivery Platform** — это микросервисная backend-система, моделирующая процесс обработки и доставки заказов.
 
-**Spring Delivery Platform** is a microservices backend system that simulates an order delivery workflow.
-
-Built with **Java, Spring Boot, Apache Kafka, PostgreSQL, and Docker**, the project demonstrates microservice architecture, asynchronous event-driven communication, shared contracts, and containerized infrastructure.
+Проект построен с использованием **Java, Spring Boot, Apache Kafka, PostgreSQL и Docker** и демонстрирует микросервисную архитектуру, асинхронное событийно-ориентированное взаимодействие, использование общих контрактов между сервисами и контейнеризированную инфраструктуру.
 
 ---
 
-## 🧱 Architecture
+## 🧱 Архитектура
 
-The application is divided into several independent services, each responsible for its own part of the delivery workflow.
+Приложение разделено на несколько независимых сервисов, каждый из которых отвечает за свою часть процесса обработки и доставки заказа.
 
 ```mermaid
 flowchart LR
-    Client[Client]
+    Client[Клиент]
 
     Order[Order Service]
     Payment[Payment Service]
@@ -40,165 +34,165 @@ flowchart LR
     Delivery --> PostgreSQL
 ```
 
-The platform combines synchronous service interaction with asynchronous event-driven communication through Apache Kafka.
+Платформа сочетает синхронное взаимодействие между сервисами с асинхронной событийно-ориентированной коммуникацией через Apache Kafka.
 
 ---
 
-## ⚙️ Tech Stack
+## ⚙️ Технологический стек
 
-| Category | Technologies |
-|---|---|
-| Language | Java 21 |
-| Framework | Spring Boot |
+| Категория | Технологии |
+| --- | --- |
+| Язык | Java 21 |
+| Фреймворк | Spring Boot |
 | Web | Spring Web |
-| Persistence | Spring Data JPA, Hibernate |
-| Messaging | Apache Kafka |
-| Database | PostgreSQL |
-| Mapping | MapStruct |
-| Boilerplate Reduction | Lombok |
-| Infrastructure | Docker, Docker Compose |
-| Build Tool | Gradle Kotlin DSL |
+| Работа с данными | Spring Data JPA, Hibernate |
+| Обмен сообщениями | Apache Kafka |
+| База данных | PostgreSQL |
+| Маппинг | MapStruct |
+| Сокращение boilerplate-кода | Lombok |
+| Инфраструктура | Docker, Docker Compose |
+| Система сборки | Gradle Kotlin DSL |
 
 ---
 
-## 🧩 Services
+## 🧩 Сервисы
 
 ### 📦 Order Service
 
-Responsible for managing customer orders.
+Отвечает за управление заказами клиентов.
 
-Main responsibilities:
+Основные задачи:
 
-- Creating new orders
-- Managing order data
-- Tracking order status
-- Processing events related to payment and delivery
-- Coordinating the order lifecycle
+- Создание новых заказов
+- Управление данными заказов
+- Отслеживание статуса заказа
+- Обработка событий, связанных с оплатой и доставкой
+- Координация жизненного цикла заказа
 
 ---
 
 ### 💳 Payment Service
 
-Responsible for payment processing.
+Отвечает за обработку платежей.
 
-Main responsibilities:
+Основные задачи:
 
-- Receiving payment requests
-- Processing order payments
-- Managing payment state
-- Participating in the order workflow
-- Publishing or processing payment-related events
+- Получение запросов на оплату
+- Обработка оплаты заказов
+- Управление состоянием платежей
+- Участие в общем процессе обработки заказа
+- Публикация и обработка событий, связанных с платежами
 
 ---
 
 ### 🚚 Delivery Service
 
-Responsible for delivery management.
+Отвечает за управление доставкой.
 
-Main responsibilities:
+Основные задачи:
 
-- Processing delivery-related events
-- Creating delivery records
-- Assigning delivery information
-- Managing delivery status
-- Publishing delivery-related events
-
----
-
-### 📚 Common Libraries
-
-The `common-libs` module contains shared contracts used by multiple services.
-
-It includes common:
-
-- DTOs
-- Event models
-- Shared abstractions
-- Communication contracts
-
-This allows services to exchange consistent data while keeping shared models in one place.
+- Обработка событий, связанных с доставкой
+- Создание записей о доставке
+- Назначение информации о доставке
+- Управление статусом доставки
+- Публикация событий, связанных с доставкой
 
 ---
 
-## 📡 Event-Driven Communication
+### 📚 Общие библиотеки
 
-Apache Kafka is used for asynchronous communication between services.
+Модуль `common-libs` содержит общие контракты, используемые несколькими сервисами.
 
-A typical order workflow looks like this:
+В него входят:
+
+- DTO
+- Модели событий
+- Общие абстракции
+- Контракты взаимодействия
+
+Это позволяет сервисам обмениваться данными в едином формате, при этом общие модели хранятся в одном месте.
+
+---
+
+## 📡 Событийно-ориентированное взаимодействие
+
+Apache Kafka используется для асинхронного взаимодействия между сервисами.
+
+Типичный процесс обработки заказа выглядит следующим образом:
 
 ```text
-1. Client creates an order
+1. Клиент создаёт заказ
         ↓
-2. Order Service processes the order
+2. Order Service обрабатывает заказ
         ↓
-3. Payment is processed
+3. Выполняется обработка платежа
         ↓
-4. Payment-related event is published
+4. Публикуется событие, связанное с оплатой
         ↓
-5. Delivery Service reacts to the event
+5. Delivery Service обрабатывает это событие
         ↓
-6. Delivery is created or assigned
+6. Создаётся или назначается доставка
         ↓
-7. Delivery-related event is published
+7. Публикуется событие, связанное с доставкой
         ↓
-8. Order Service updates the final order state
+8. Order Service обновляет итоговое состояние заказа
 ```
 
-This approach helps reduce direct coupling between services and demonstrates the principles of event-driven architecture.
+Такой подход позволяет снизить прямую связанность между сервисами и демонстрирует принципы событийно-ориентированной архитектуры.
 
 ---
 
-## 📦 Project Structure
+## 📦 Структура проекта
 
 ```text
 Delivery_project
 │
-├── order-service/        # Order management
+├── order-service/        # Управление заказами
 │
-├── payment-service/      # Payment processing
+├── payment-service/      # Обработка платежей
 │
-├── delivery-service/     # Delivery management
+├── delivery-service/     # Управление доставкой
 │
-├── common-libs/          # Shared DTOs and event contracts
+├── common-libs/          # Общие DTO и контракты событий
 │
-├── docker-compose.yaml   # Local infrastructure
-├── build.gradle.kts      # Root Gradle configuration
-├── settings.gradle.kts   # Gradle project settings
+├── docker-compose.yaml   # Локальная инфраструктура
+├── build.gradle.kts      # Корневая конфигурация Gradle
+├── settings.gradle.kts   # Настройки Gradle-проекта
 └── README.md
 ```
 
 ---
 
-## 🐳 Infrastructure
+## 🐳 Инфраструктура
 
-The local development environment is containerized with Docker Compose.
+Локальное окружение для разработки контейнеризировано с помощью Docker Compose.
 
-The infrastructure includes:
+Инфраструктура включает:
 
-- **PostgreSQL** — relational database
-- **Apache Kafka** — event broker
-- Supporting Kafka infrastructure
+- **PostgreSQL** — реляционная база данных
+- **Apache Kafka** — брокер сообщений
+- Вспомогательную инфраструктуру для работы Kafka
 
-Docker Compose makes it possible to start the required infrastructure with a single command.
+Docker Compose позволяет запустить всю необходимую инфраструктуру одной командой.
 
 ---
 
-## ▶️ Quick Start
+## ▶️ Быстрый старт
 
-### 1. Clone the repository
+### 1. Клонирование репозитория
 
 ```bash
 git clone https://github.com/Dolkisss/Delivery_project.git
 cd Delivery_project
 ```
 
-### 2. Start the infrastructure
+### 2. Запуск инфраструктуры
 
 ```bash
 docker compose up -d
 ```
 
-### 3. Build the project
+### 3. Сборка проекта
 
 Linux / macOS:
 
@@ -212,9 +206,9 @@ Windows:
 gradlew.bat build
 ```
 
-### 4. Run the services
+### 4. Запуск сервисов
 
-Start each microservice separately:
+Запустите каждый микросервис отдельно:
 
 ```bash
 ./gradlew :order-service:bootRun
@@ -230,7 +224,7 @@ Start each microservice separately:
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Автор
 
 **Dolkisss**
 
