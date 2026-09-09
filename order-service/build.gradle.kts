@@ -35,6 +35,12 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.0")
 	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
+	// Source: https://mvnrepository.com/artifact/junit/junit
+	testImplementation("junit:junit:4.13.2")
+	// Source: https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation("org.mockito:mockito-core:5.23.0")
+
 }
 
 tasks.withType<Test> {
